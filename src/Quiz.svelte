@@ -29,7 +29,7 @@
 
     $: actualNumber = activeQuestion +1;
 
-    $: if ($score > 1){
+    $: if ($score > 7){
         isModalOpen = true;
 
     }
