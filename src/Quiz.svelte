@@ -1,10 +1,12 @@
 <script>
     import {blur} from "svelte/transition";
     import Question from "./Question.svelte"
+    import Modal from "./Modal.svelte"
     import { onMount} from 'svelte'
 
     let activeQuestion = 0;
     let score = 0;
+    let isModalOpen = false;
 	
 	let quiz = getQuiz();
 	async function getQuiz(){
@@ -22,6 +24,7 @@
         score = 0;
         activeQuestion = 0;
         quiz = getQuiz()
+        isModalOpen = false;
     }
 
     function addToScore(){
@@ -30,9 +33,9 @@
 
     $: actualNumber = activeQuestion +1;
 
-    $: if (score > 7){
-        alert("You won!");
-        resetQuiz();
+    $: if (score > 1){
+        isModalOpen = true;
+
     }
 
     $: if (activeQuestion > 10){
@@ -66,3 +69,10 @@
 	{/await}
 
 </div>
+{#if isModalOpen}
+<Modal>
+    <h2>You Won!</h2>
+    <p>Congratulations!</p>
+    <button on:click={resetQuiz}>Start Over</button>
+</Modal>
+{/if}

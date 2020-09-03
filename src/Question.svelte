@@ -37,12 +37,15 @@
     }
 
 </script>
-
+<style>
+    h5.correct { color: green;}
+    h5.wrong { color: red;}
+</style>
 
 <h3>{@html question.question}</h3>
 
 {#if isAnswered}
-<h5>
+<h5 class={isCorrect ? 'correct' : 'wrong'}>
     {#if isCorrect }
     You got it right!
     {:else}
